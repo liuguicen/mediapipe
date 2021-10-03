@@ -1,4 +1,5 @@
 #!/bin/bash
+# 直接一次执行setup_opencv.sh不行，半手动半自动的执行
 # Copyright 2019 The MediaPipe Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
