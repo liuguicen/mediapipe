@@ -11,6 +11,12 @@ exports_files(["LICENSE"])
 # '                libopencv-imgproc-dev libopencv-video-dev'
 # on Debian Buster/Ubuntu 18.04.
 # If you install OpenCV separately, please modify the build rule accordingly.
+new_local_repository(
+  name = "linux_opencv",
+  build_file = "@//third_party:opencv_linux.BUILD",
+  path = "/usr",
+)
+
 cc_library(
     name = "opencv",
     hdrs = glob([
@@ -18,14 +24,14 @@ cc_library(
         #"include/aarch64-linux-gnu/opencv4/opencv2/cvconfig.h",
         #"include/arm-linux-gnueabihf/opencv4/opencv2/cvconfig.h",
         #"include/x86_64-linux-gnu/opencv4/opencv2/cvconfig.h",
-        #"include/opencv4/opencv2/**/*.h*",
+        "include/opencv4/opencv2/**/*.h*",
     ]),
     includes = [
         # For OpenCV 4.x
         #"include/aarch64-linux-gnu/opencv4/",
         #"include/arm-linux-gnueabihf/opencv4/",
         #"include/x86_64-linux-gnu/opencv4/",
-        #"include/opencv4/",
+        "include/opencv4/",
     ],
     linkopts = [
         "-l:libopencv_core.so",
