@@ -257,9 +257,10 @@ android_ndk_repository(
 
 android_sdk_repository(
     name = "androidsdk",
+    api_level = 30,
+    build_tools_version = "30.0.3",
     path = "/D/Android/sdk_linux",
 )
-
 # iOS basic build deps.
 
 http_archive(
@@ -318,6 +319,7 @@ http_archive(
 # Maven dependencies.
 
 RULES_JVM_EXTERNAL_TAG = "4.0"
+
 RULES_JVM_EXTERNAL_SHA = "31701ad93dbfe544d597dbe62c9a1fdd76d81d8a9150c2bf1ecf928ecdf97169"
 
 http_archive(
@@ -383,7 +385,9 @@ http_archive(
 # Tensorflow repo should always go after the other external dependencies.
 # 2021-07-29
 _TENSORFLOW_GIT_COMMIT = "52a2905cbc21034766c08041933053178c5d10e3"
+
 _TENSORFLOW_SHA256 = "06d4691bcdb700f3275fa0971a1585221c2b9f3dffe867963be565a6643d7f56"
+
 http_archive(
     name = "org_tensorflow",
     urls = [
@@ -403,21 +407,27 @@ http_archive(
 )
 
 load("@org_tensorflow//tensorflow:workspace3.bzl", "tf_workspace3")
+
 tf_workspace3()
+
 load("@org_tensorflow//tensorflow:workspace2.bzl", "tf_workspace2")
+
 tf_workspace2()
 
 # Edge TPU
 http_archive(
-  name = "libedgetpu",
-  sha256 = "14d5527a943a25bc648c28a9961f954f70ba4d79c0a9ca5ae226e1831d72fe80",
-  strip_prefix = "libedgetpu-3164995622300286ef2bb14d7fdc2792dae045b7",
-  urls = [
-    "https://github.com/google-coral/libedgetpu/archive/3164995622300286ef2bb14d7fdc2792dae045b7.tar.gz"
-  ],
+    name = "libedgetpu",
+    sha256 = "14d5527a943a25bc648c28a9961f954f70ba4d79c0a9ca5ae226e1831d72fe80",
+    strip_prefix = "libedgetpu-3164995622300286ef2bb14d7fdc2792dae045b7",
+    urls = [
+        "https://github.com/google-coral/libedgetpu/archive/3164995622300286ef2bb14d7fdc2792dae045b7.tar.gz",
+    ],
 )
+
 load("@libedgetpu//:workspace.bzl", "libedgetpu_dependencies")
+
 libedgetpu_dependencies()
 
 load("@coral_crosstool//:configure.bzl", "cc_crosstool")
+
 cc_crosstool(name = "crosstool")
