@@ -252,7 +252,7 @@ http_archive(
 # You may run setup_android.sh to install Android SDK and NDK.
 android_ndk_repository(
     name = "androidndk",
-    path = "/D/Android/sdk_linux/ndk",
+    path = "/D/Android/sdk_linux/ndk/21.4.7075529",
 )
 
 android_sdk_repository(
